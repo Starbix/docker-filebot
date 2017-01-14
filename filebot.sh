@@ -18,14 +18,14 @@ QUOTE_FIXER='replaceAll(/[\`\u00b4\u2018\u2019\u02bb]/, "'"'"'").replaceAll(/[\u
 # Customize the renaming format here. For info on formatting: https://www.filebot.net/naming.html
 
 # Music/Eric Clapton/From the Cradle/05 - It Hurts Me Too.mp3
-MUSIC_FORMAT="Music/{n.$QUOTE_FIXER}/{album.$QUOTE_FIXER}/{media.TrackPosition.pad(2)} - {t.$QUOTE_FIXER}"
+MUSIC_FORMAT="Musik/{artist}/{album} {y}/{pi.pad(2)} - {t} - [{audio[0].bitratestring}]"
 
 # Movies/Fight Club.mkv
-MOVIE_FORMAT="Movies/{n.$QUOTE_FIXER} {' CD'+pi}"
+MOVIE_FORMAT="Filme/{n.replaceAll(/:\?/,'-').replacePart('')} ({y})/{n.replaceAll(/:\?/,'-').replacePart('')} ({y}) {' - part'+pi}{' ('+fn.match(/Extended/).upper()+')'}[{vf}{'.'+source}{'.'+vc}{'.'+BITDEPTH+'Bit'}{'.'+af}{'.'+ac}{'.'+GROUP}]{'.'+lang}"
 
 # TV Shows/Game of Thrones/Season 05/Game of Thrones - S05E08 - Hardhome.mp4
 # TV Shows/Game of Thrones/Special/Game of Thrones - S00E11 - A Day in the Life.mp4
-SERIES_FORMAT="TV Shows/{n}/{episode.special ? 'Special' : 'Season '+s.pad(2)}/{n} - {episode.special ? 'S00E'+special.pad(2) : s00e00} - {t.${QUOTE_FIXER}.replaceAll(/[!?.]+$/).replacePart(', Part $1')}{'.'+lang}"
+SERIES_FORMAT="Serien/{n.replaceAll(/:/,'-')}/{'Staffel '+s}/{n.replaceAll(/:/,'-').replacePart('')} - {s00e00} - {t.replace('?', '').replaceAll(/:/,'-').replacePart(', Part $1')}{' ('+fn.match(/Uncensored/).upper()+')'}{' ('+fn.match(/proper/).upper()+')'} - [{VF}{'.'+SOURCE}{'.'+VC}{'.'+BITDEPTH+'Bit'}{'.'+AC}{'.'+AF}{'.'+GROUP}]{'.'+lang}"
 
 . /files/FileBot.conf
 
@@ -44,7 +44,7 @@ VERSION=3
 . /files/pre-run.sh
 
 # See http://www.filebot.net/forums/viewtopic.php?t=215 for details on amc
-filebot -script fn:amc -no-xattr --output /output --log-file /files/amc.log --action copy --conflict auto \
-  -non-strict --def ut_dir=/input ut_kind=multi music=y deleteAfterExtract=y clean=y \
+filebot -script fn:amc -no-xattr --output /media --log-file /files/amc.log --action copy --conflict auto \
+  -non-strict --def ut_dir=/media/downloads ut_kind=multi music=y deleteAfterExtract=y clean=y \
   excludeList=/config/amc-exclude-list.txt $SUBTITLE_OPTION \
   movieFormat="$MOVIE_FORMAT" musicFormat="$MUSIC_FORMAT" seriesFormat="$SERIES_FORMAT"
