@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker build --rm=true -t coppit/filebot . 
+docker build --rm=true -t starbix/filebot . 
