@@ -28,7 +28,7 @@ RUN set -x \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-VOLUME ["/input", "/output", "/config"]
+VOLUME ["/media", "/config"]
 
 # Rev-locking this to ensure reproducible builds
 RUN wget -O /files/runas.sh \
