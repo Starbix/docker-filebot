@@ -22,8 +22,8 @@ RUN chmod a+rwX /files
 # Use of inotify inspired by inkubux/filebot-inotifywatch
 RUN set -x \
 #  && apt-get update \
-  && apt-get install -y inotify-tools \
-  && wget -O /files/filebot.deb 'https://app.filebot.net/download.php?type=deb&arch=amd64&version=4.7.5' \
+  && apt-get install -y inotify-tools libmediainfo-dev \
+  && wget -O /files/filebot.deb 'https://app.filebot.net/download.php?type=deb&arch=amd64&version=4.7.7' \
   && dpkg -i /files/filebot.deb && rm /files/filebot.deb \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
