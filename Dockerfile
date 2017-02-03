@@ -11,6 +11,7 @@ RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup \
 # Auto-accept Oracle JDK license
 RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
 
+# Filebot needs Java 8
 RUN add-apt-repository ppa:webupd8team/java \
   && apt-get update \
   && apt-get install -y oracle-java8-installer
@@ -35,7 +36,7 @@ RUN wget -O /files/runas.sh \
   'https://raw.githubusercontent.com/coppit/docker-inotify-command/7be05137c367a7bbff6b7980aa14e8af0c24eca6/runas.sh'
 RUN chmod +x /files/runas.sh
 RUN wget -O /files/monitor.sh \
-  'https://raw.githubusercontent.com/coppit/docker-inotify-command/7be05137c367a7bbff6b7980aa14e8af0c24eca6/monitor.sh'
+  'https://raw.githubusercontent.com/coppit/docker-inotify-command/934be986851265789979dde2e220d81cfd352850/monitor.sh'
 RUN chmod +x /files/monitor.sh
 
 # Add scripts. Make sure start.sh, pre-run.sh, and filebot.sh are executable by $USER_ID
