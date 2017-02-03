@@ -15,16 +15,10 @@ SCRIPTS_TO_DOWNLOAD=(
 
 QUOTE_FIXER='replaceAll(/[\`\u00b4\u2018\u2019\u02bb]/, "'"'"'").replaceAll(/[\u201c\u201d]/, '"'"'""'"'"')'
 
-# Customize the renaming format here. For info on formatting: https://www.filebot.net/naming.html
+MUSIC_FORMAT="Musik/{artist}/{album} {y}/{pi.pad(2)} - {t} - [{audio[0].bitratestring.replace('/', 'p')}]"
 
-# Music/Eric Clapton/From the Cradle/05 - It Hurts Me Too.mp3
-MUSIC_FORMAT="Musik/{artist}/{album} {y}/{pi.pad(2)} - {t} - [{audio[0].bitratestring}]"
-
-# Movies/Fight Club.mkv
 MOVIE_FORMAT="Filme/{n.replaceAll(/:\?/,'-').replacePart('')} ({y})/{n.replaceAll(/:\?/,'-').replacePart('')} ({y}) {' - part'+pi}{' ('+fn.match(/Extended/).upper()+')'}[{vf}{'.'+source}{'.'+vc}{'.'+BITDEPTH+'Bit'}{'.'+af}{'.'+ac}{'.'+GROUP}]{'.'+lang}"
 
-# TV Shows/Game of Thrones/Season 05/Game of Thrones - S05E08 - Hardhome.mp4
-# TV Shows/Game of Thrones/Special/Game of Thrones - S00E11 - A Day in the Life.mp4
 SERIES_FORMAT="Serien/{n.replaceAll(/:/,'-')}/{'Staffel '+s}/{n.replaceAll(/:/,'-').replacePart('')} - {s00e00} - {t.replace('?', '').replaceAll(/:/,'-').replacePart(', Part $1')}{' ('+fn.match(/Uncensored/).upper()+')'}{' ('+fn.match(/proper/).upper()+')'} - [{VF}{'.'+SOURCE}{'.'+VC}{'.'+BITDEPTH+'Bit'}{'.'+AC}{'.'+AF}{'.'+GROUP}]{'.'+lang}"
 
 . /files/FileBot.conf
