@@ -53,7 +53,7 @@ function create_conf_and_sh_files {
 
   cat <<"EOF" >> /files/FileBot.conf
 
-WATCH_DIR=/media/downloads
+WATCH_DIR=/media/downloads/manual/done
 
 COMMAND="bash /files/filebot.sh"
 
