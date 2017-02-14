@@ -23,7 +23,7 @@ RUN chmod a+rwX /files
 # Use of inotify inspired by inkubux/filebot-inotifywatch
 RUN set -x \
 #  && apt-get update \
-  && apt-get install -y inotify-tools libmediainfo-dev \
+  && apt-get install -y inotify-tools mediainfo file libchromaprint-tools \
   && wget -O /files/filebot.deb 'https://app.filebot.net/download.php?type=deb&arch=amd64&version=4.7.7' \
   && dpkg -i /files/filebot.deb && rm /files/filebot.deb \
   && apt-get clean \
@@ -49,8 +49,8 @@ RUN chmod a+wx /files/filebot.sh
 ADD filebot.conf /files/filebot.conf
 RUN chmod a+w /files/filebot.conf
 
-ENV USER_ID 0
-ENV GROUP_ID 0
+ENV USER_ID 99
+ENV GROUP_ID 100
 ENV UMASK 0000
 
 CMD /files/start.sh
