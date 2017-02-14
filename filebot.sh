@@ -39,6 +39,6 @@ VERSION=3
 
 # See http://www.filebot.net/forums/viewtopic.php?t=215 for details on amc
 filebot -script fn:amc -no-xattr --output /media --log-file /files/amc.log --action hardlink --conflict auto \
-  -non-strict --def ut_dir=/media/downloads ut_kind=multi music=y deleteAfterExtract=y clean=y \
+  -non-strict --def ut_dir=/media/downloads/manual/done ut_kind=multi music=y deleteAfterExtract=y clean=y \
   excludeList=/config/amc-exclude-list.txt $SUBTITLE_OPTION \
   movieFormat="$MOVIE_FORMAT" musicFormat="$MUSIC_FORMAT" seriesFormat="$SERIES_FORMAT"
