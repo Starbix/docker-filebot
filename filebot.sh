@@ -15,7 +15,7 @@ SCRIPTS_TO_DOWNLOAD=(
 
 QUOTE_FIXER='replaceAll(/[\`\u00b4\u2018\u2019\u02bb]/, "'"'"'").replaceAll(/[\u201c\u201d]/, '"'"'""'"'"')'
 
-MUSIC_FORMAT="Musik/{artist}/{album} {y}/{pi.pad(2)} - {t} - [{audio[0].bitratestring.replace('/', 'p')}]"
+MUSIC_FORMAT="Musik/{artist}/{album} {y}/{pi.pad(2)} - {t} - [{kbps}.{khz}]"
 
 MOVIE_FORMAT="Filme/{n.replaceAll(/:\?/,'-').replacePart('')} ({y})/{n.replaceAll(/:\?/,'-').replacePart('')} ({y}) {' - part'+pi}{' ('+fn.match(/Extended/).upper()+')'}[{vf}{'.'+source}{'.'+vc}{'.'+BITDEPTH+'Bit'}{'.'+af}{'.'+ac}{'.'+GROUP}]{'.'+lang}"
 
