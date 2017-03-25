@@ -23,9 +23,14 @@ RUN chmod a+rwX /files
 # Use of inotify inspired by inkubux/filebot-inotifywatch
 RUN set -x \
 #  && apt-get update \
+<<<<<<< HEAD
   # libchromaprint-tools for fpcalc, used to compute AcoustID fingerprints for MP3s
   && apt-get install -y inotify-tools mediainfo libchromaprint-tools \
   && wget -O /files/filebot.deb 'https://app.filebot.net/download.php?type=deb&arch=amd64&version=4.7.8‘ \
+=======
+  && apt-get install -y inotify-tools libmediainfo-dev libchromaprint-tools \
+  && wget -O /files/filebot.deb 'https://app.filebot.net/download.php?type=deb&arch=amd64&version=4.7.8' \
+>>>>>>> d8f07ac488244cf199ce69dce51eb715adbf51b2
   && dpkg -i /files/filebot.deb && rm /files/filebot.deb \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
