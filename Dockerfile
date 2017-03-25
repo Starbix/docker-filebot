@@ -23,8 +23,9 @@ RUN chmod a+rwX /files
 # Use of inotify inspired by inkubux/filebot-inotifywatch
 RUN set -x \
 #  && apt-get update \
+  # libchromaprint-tools for fpcalc, used to compute AcoustID fingerprints for MP3s
   && apt-get install -y inotify-tools mediainfo libchromaprint-tools \
-  && wget -O /files/filebot.deb 'https://app.filebot.net/download.php?type=deb&arch=amd64&version=4.7.8' \
+  && wget -O /files/filebot.deb 'https://app.filebot.net/download.php?type=deb&arch=amd64&version=4.7.8‘ \
   && dpkg -i /files/filebot.deb && rm /files/filebot.deb \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -52,5 +53,11 @@ RUN chmod a+w /files/filebot.conf
 ENV USER_ID 99
 ENV GROUP_ID 100
 ENV UMASK 0000
+
+# Set the locale, to help filebot deal with files that have non-ASCII characters
+RUN locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
 
 CMD /files/start.sh
