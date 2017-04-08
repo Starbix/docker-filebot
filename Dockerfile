@@ -20,12 +20,11 @@ RUN add-apt-repository ppa:webupd8team/java \
 RUN mkdir /files
 RUN chmod a+rwX /files
 
-# Use of inotify inspired by inkubux/filebot-inotifywatch
 RUN set -x \
 #  && apt-get update \
   # libchromaprint-tools for fpcalc, used to compute AcoustID fingerprints for MP3s
-  && apt-get install -y inotify-tools mediainfo libchromaprint-tools \
-  && wget -O /files/filebot.deb 'https://app.filebot.net/download.php?type=deb&arch=amd64&version=4.7.8‘ \
+  && apt-get install -y python3-watchdog mediainfo libchromaprint-tools \
+  && wget -O /files/filebot.deb 'https://app.filebot.net/download.php?type=deb&arch=amd64&version=4.7.9' \
   && dpkg -i /files/filebot.deb && rm /files/filebot.deb \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -34,11 +33,11 @@ VOLUME ["/media", "/config"]
 
 # Rev-locking this to ensure reproducible builds
 RUN wget -O /files/runas.sh \
-  'https://raw.githubusercontent.com/coppit/docker-inotify-command/7be05137c367a7bbff6b7980aa14e8af0c24eca6/runas.sh'
+  'https://raw.githubusercontent.com/coppit/docker-inotify-command/1401a636bbc9369141d0d32ac7b80c2bf7fcdbcb/runas.sh'
 RUN chmod +x /files/runas.sh
-RUN wget -O /files/monitor.sh \
-  'https://raw.githubusercontent.com/coppit/docker-inotify-command/934be986851265789979dde2e220d81cfd352850/monitor.sh'
-RUN chmod +x /files/monitor.sh
+RUN wget -O /files/monitor.py \
+  'https://raw.githubusercontent.com/coppit/docker-inotify-command/1401a636bbc9369141d0d32ac7b80c2bf7fcdbcb/monitor.py'
+RUN chmod +x /files/monitor.py
 
 # Add scripts. Make sure start.sh, pre-run.sh, and filebot.sh are executable by $USER_ID
 ADD pre-run.sh /files/pre-run.sh
