@@ -27,7 +27,8 @@ RUN set -x \
   && wget -O /files/filebot.deb 'https://app.filebot.net/download.php?type=deb&arch=amd64&version=4.7.9' \
   && dpkg -i /files/filebot.deb && rm /files/filebot.deb \
   && apt-get clean \
-  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+  && locale-gen en_US.UTF-8
 
 VOLUME ["/media", "/config"]
 
@@ -40,21 +41,20 @@ RUN wget -O /files/monitor.py \
 RUN chmod +x /files/monitor.py
 
 # Add scripts. Make sure start.sh, pre-run.sh, and filebot.sh are executable by $USER_ID
-ADD pre-run.sh /files/pre-run.sh
-RUN chmod a+x /files/pre-run.sh
-ADD start.sh /files/start.sh
-RUN chmod a+x /files/start.sh
-ADD filebot.sh /files/filebot.sh
-RUN chmod a+wx /files/filebot.sh
-ADD filebot.conf /files/filebot.conf
-RUN chmod a+w /files/filebot.conf
+COPY pre-run.sh /files/pre-run.sh
+COPY start.sh /files/start.sh
+COPY filebot.sh /files/filebot.sh
+COPY filebot.conf /files/filebot.conf
+RUN chmod a+w /files/filebot.conf \
+  && chmod a+x /files/pre-run.sh \
+  && chmod a+x /files/start.sh \
+  && chmod a+wx /files/filebot.sh
 
 ENV USER_ID 99
 ENV GROUP_ID 100
 ENV UMASK 0000
 
 # Set the locale, to help filebot deal with files that have non-ASCII characters
-RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
