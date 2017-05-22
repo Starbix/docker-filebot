@@ -6,7 +6,7 @@ docker-filebot
 [![Docker Stars](https://img.shields.io/docker/stars/starbix/filebot.svg)](https://hub.docker.com/r/starbix/filebot/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/starbix/filebot.svg)](https://hub.docker.com/r/starbix/filebot/)
 [![Docker Automated buil](https://img.shields.io/docker/automated/starbix/filebot.svg)](https://hub.docker.com/r/starbix/filebot/)
-[![Docker Build Statu](https://img.shields.io/docker/build/starbix/filebot.svg)](https://hub.docker.com/r/starbix/filebot/)
+[![Docker Build Status](https://img.shields.io/docker/build/starbix/filebot.svg)](https://hub.docker.com/r/starbix/filebot/)
 
 This is a Docker container for running [FileBot](http://www.filebot.net/), a media file organizer. Drop files
 into the input directory, and they'll be cleaned up and moved to the output directory.
