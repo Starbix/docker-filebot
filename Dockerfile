@@ -52,7 +52,7 @@ chmod a+rwX /files && \
 
 # To find the latest version: https://www.filebot.net/download.php?mode=s&type=deb&arch=amd64
 # We'll use a specific version for reproducible builds
-wget -N 'https://sourceforge.net/projects/filebot/files/filebot/FileBot_4.7.9/filebot_4.7.9_amd64.deb' -O /files/filebot.deb && \
+wget -N 'https://sourceforge.net/projects/filebot/files/filebot/FileBot_4.7.12/filebot_4.7.12_amd64.deb' -O /files/filebot.deb && \
 dpkg -i /files/filebot.deb && rm /files/filebot.deb
 
 # Rev-locking this to ensure reproducible builds
