@@ -20,7 +20,7 @@ echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /u
 add-apt-repository ppa:webupd8team/java && \
 apt-get update && \
 # Install a specific version for reproducible builds
-apt-get install -qy 'oracle-java8-installer=8u131-1~webupd8~2' && \
+apt-get install -qy 'oracle-java8-installer=8u144-1~webupd8~0' && \
 
 # libchromaprint-tools for fpcalc, used to compute AcoustID fingerprints for MP3s
 apt-get install -y python3-watchdog mediainfo libchromaprint-tools && \
